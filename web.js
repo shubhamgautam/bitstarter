@@ -7,7 +7,12 @@ fs.readFile('index.html',function(err, data){
     console.log(buf.toString());
 })
 app.get('/', function(request, response) {
-     response.send("Hello World from index.html");
+    fs.readFile('index.html',function(err, data){
+    buf= new Buffer(data);
+    response.send(buf.toString());
+})
+
+    // response.send("Hello World from index.html");
   
 });
 
