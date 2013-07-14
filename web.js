@@ -1,22 +1,14 @@
 var express = require('express');
 var fs = require('fs');
 var app = express.createServer(express.logger());
+var htmlfile = "index.html";
 
-fs.readFile('index.html',function(err, data){
-    buf= new Buffer(data);
-    console.log(buf.toString());
-})
 app.get('/', function(request, response) {
-    fs.readFile('index.html',function(err, data){
-    buf= new Buffer(data);
-    response.send(buf.toString());
+    var html = fs.readFileSync(htmlfile).toString();
+response.send(html);
 })
 
-    // response.send("Hello World from index.html");
-  
-});
-
-var port = process.env.PORT || 5000;
+var port = process.env.PORT || 8080;
 app.listen(port, function() {
   console.log("Listening on " + port);
 });
